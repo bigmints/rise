@@ -1,0 +1,11 @@
+{
+  "name": "rise",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["frontend"],
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "npm --prefix frontend run build",
+    "test": "python3 -m unittest discover -s tests -v"
+  }
+}

@@ -1,0 +1,16 @@
+[Unit]
+Description=Back up Rise wellness data
+After=rise.service
+
+[Service]
+Type=oneshot
+User=rise
+Group=rise
+WorkingDirectory=/opt/rise/app
+ExecStart=/usr/bin/python3 /opt/rise/app/deploy/rise_backup.py
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/opt/rise/data /opt/rise/backups

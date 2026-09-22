@@ -1,0 +1,4 @@
+interface:
+  display_name: "Record wellness and care in Rise"
+  short_description: "Safely record explicit Rise wellness and care updates"
+  default_prompt: "Record this explicit wellness or care update in Rise. Preserve the original wording and separate readings, discover live tracker or care IDs first, and confirm only after Rise acknowledges the write."

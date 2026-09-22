@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 145 24% 7%;
+    --foreground: 90 20% 96%;
+    --card: 145 18% 10%;
+    --card-foreground: 90 20% 96%;
+    --popover: 145 18% 10%;
+    --popover-foreground: 90 20% 96%;
+    --primary: 75 82% 67%;
+    --primary-foreground: 145 28% 8%;
+    --secondary: 145 14% 15%;
+    --secondary-foreground: 90 18% 92%;
+    --muted: 145 12% 14%;
+    --muted-foreground: 145 8% 62%;
+    --accent: 145 14% 17%;
+    --accent-foreground: 90 20% 96%;
+    --destructive: 0 67% 52%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 145 11% 21%;
+    --input: 145 11% 21%;
+    --ring: 75 82% 67%;
+    --radius: 1rem;
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
+  }
+
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply bg-background;
+    color-scheme: dark;
+  }
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+    min-height: 100dvh;
+  }
+  #root {
+    min-height: 100dvh;
+  }
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+@layer utilities {
+  .safe-top {
+    padding-top: var(--safe-area-top);
+  }
+  .safe-bottom {
+    padding-bottom: max(0.75rem, var(--safe-area-bottom));
+  }
+  .safe-inline {
+    padding-left: max(1rem, var(--safe-area-left));
+    padding-right: max(1rem, var(--safe-area-right));
+  }
+  .safe-nav-inline {
+    padding-left: max(0.5rem, var(--safe-area-left));
+    padding-right: max(0.5rem, var(--safe-area-right));
+  }
+  .app-bottom-space {
+    padding-bottom: calc(7.75rem + var(--safe-area-bottom));
+  }
+  .mobile-checkin-fab {
+    position: fixed;
+    right: max(1.25rem, var(--safe-area-right));
+    bottom: calc(4rem + max(0.75rem, var(--safe-area-bottom)));
+    left: auto;
+    z-index: 45;
+    width: 3.5rem;
+    height: 3.5rem;
+    max-width: none;
+    margin-inline: 0;
+    box-shadow: 0 12px 32px hsl(var(--background) / 0.68);
+  }
+  .balance {
+    text-wrap: balance;
+  }
+}
+
+@media (max-width: 639px) {
+  .mobile-checkin-sheet,
+  .mobile-detail-sheet {
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    max-height: min(92dvh, 760px) !important;
+    transform: none !important;
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+    border-left: 0 !important;
+    border-radius: 1.25rem 1.25rem 0 0 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-bottom-space {
+    padding-bottom: 2rem;
+  }
+}

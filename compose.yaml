@@ -1,0 +1,17 @@
+services:
+  rise:
+    build: .
+    container_name: rise
+    restart: unless-stopped
+    environment:
+      RISE_HERMES_TOKEN: ${RISE_HERMES_TOKEN}
+      RISE_CHECKIN_SECRET: ${RISE_CHECKIN_SECRET}
+      RISE_DASHBOARD_PASSWORD: ${RISE_DASHBOARD_PASSWORD}
+      RISE_SECURE_COOKIE: ${RISE_SECURE_COOKIE:-0}
+    ports:
+      - "${RISE_BIND_ADDRESS:-127.0.0.1}:8787:8787"
+    volumes:
+      - rise-data:/app/data
+
+volumes:
+  rise-data:

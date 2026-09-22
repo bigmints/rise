@@ -1,0 +1,25 @@
+[Unit]
+Description=Rise private wellness dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=rise
+Group=rise
+WorkingDirectory=/opt/rise/app
+EnvironmentFile=/opt/rise/.env
+ExecStart=/usr/bin/python3 /opt/rise/app/server.py
+Restart=on-failure
+RestartSec=5s
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/opt/rise/data
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

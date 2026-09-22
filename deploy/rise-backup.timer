@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily Rise wellness data backup
+
+[Timer]
+OnCalendar=*-*-* 02:20:00
+Persistent=true
+RandomizedDelaySec=10m
+Unit=rise-backup.service
+
+[Install]
+WantedBy=timers.target
