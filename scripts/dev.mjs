@@ -4,6 +4,12 @@ import process from "node:process";
 
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
 const env = { ...process.env, RISE_HOST: process.env.RISE_HOST || "127.0.0.1" };
+const portFlag = process.argv.indexOf("--port");
+const defaultUiPort = portFlag >= 0 ? process.argv[portFlag + 1] : "5173";
+const uiPort = process.env.PORT || defaultUiPort;
+if (!/^\d+$/.test(uiPort) || Number(uiPort) < 1 || Number(uiPort) > 65535) {
+  throw new Error(`Invalid port: ${uiPort}`);
+}
 
 function portIsFree(port) {
   return new Promise((resolve) => {
@@ -52,7 +58,7 @@ if (reuseApi) {
   processes.push(spawn("python3", ["server.py"], { env, stdio: "inherit" }));
 }
 processes.push(
-  spawn(npm, ["--prefix", "frontend", "run", "dev", "--", "--host", "127.0.0.1", "--port", "5173", "--strictPort"], {
+  spawn(npm, ["--prefix", "frontend", "run", "dev", "--", "--host", "127.0.0.1", "--port", uiPort, "--strictPort"], {
     env,
     stdio: "inherit",
   }),
@@ -91,4 +97,4 @@ process.on("SIGINT", () => {
 });
 process.on("SIGTERM", () => stop("SIGTERM"));
 
-console.log("Rise development: http://127.0.0.1:5173");
+console.log(`Rise development: http://127.0.0.1:${uiPort}`);
