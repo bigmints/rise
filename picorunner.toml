@@ -21,7 +21,7 @@ environment = { RISE_DB_PATH = "data/rise.db" }
 
 [health]
 type = "http"
-path = "/"
+path = "/api/health"
 timeout_seconds = 90
 
 [persistence]
