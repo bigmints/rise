@@ -1,0 +1,46 @@
+schema = 1
+name = "Rise"
+
+[runtime]
+kind = "node"
+version = "22"
+package_manager = "npm"
+workspace = "."
+
+[[setup.steps]]
+kind = "dependencies"
+locked = true
+
+[launch]
+command = ["npm", "run", "dev"]
+working_directory = "."
+host = "127.0.0.1"
+port = 5173
+port_env = "PORT"
+environment = { RISE_DB_PATH = "data/rise.db" }
+
+[health]
+type = "http"
+path = "/"
+timeout_seconds = 90
+
+[persistence]
+paths = ["data"]
+
+[[inputs]]
+name = "RISE_DASHBOARD_PASSWORD"
+kind = "secret"
+required = false
+description = "Optional password protecting the local Rise dashboard."
+
+[[inputs]]
+name = "RISE_HERMES_TOKEN"
+kind = "secret"
+required = false
+description = "Optional token for authorized Hermes integrations."
+
+[[inputs]]
+name = "RISE_CHECKIN_SECRET"
+kind = "secret"
+required = false
+description = "Optional secret used to authorize external check-in submissions."

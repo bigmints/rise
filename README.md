@@ -1,5 +1,7 @@
 # Rise
 
+[![Launch on PicoRunner](https://picorunner.com/badges/launch.svg)](https://picorunner.com/launch/?repository=https%3A%2F%2Fgithub.com%2Fbigmints%2Frise)
+
 Rise is a self-hosted wellness journal for daily check-ins, measurements,
 health records, medications, appointments, and follow-up reminders. It records
 what you enter without treating missing days as failures or offering medical
